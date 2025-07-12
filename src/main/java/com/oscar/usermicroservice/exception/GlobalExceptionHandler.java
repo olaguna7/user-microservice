@@ -8,8 +8,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.Objects;
-
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -22,7 +20,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleDataIntegrity(DataIntegrityViolationException exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("Invalid data: " + Objects.requireNonNull(exception.getRootCause()).getMessage());
+                .body("Invalid data: " + exception.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
