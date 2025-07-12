@@ -5,6 +5,8 @@ import com.oscar.usermicroservice.entity.User;
 
 public class UserCreateMapper {
 
+    private UserCreateMapper() {}
+
     public static UserCreateDTO toDTO(User user) {
         UserCreateDTO userDTO = new UserCreateDTO();
         userDTO.setUsername(user.getUsername());

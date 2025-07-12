@@ -7,6 +7,8 @@ import java.util.List;
 
 public class UserMapper {
 
+    private UserMapper() {}
+
     public static UserDTO toDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername(user.getUsername());
