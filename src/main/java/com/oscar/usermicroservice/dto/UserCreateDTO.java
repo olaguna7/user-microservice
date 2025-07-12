@@ -2,6 +2,7 @@ package com.oscar.usermicroservice.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import java.util.List;
 import lombok.*;
 
 @Data
@@ -15,4 +16,5 @@ public class UserCreateDTO {
     private String email;
     @NotNull
     private String password;
+    private List<RoleDTO> roles;
 }

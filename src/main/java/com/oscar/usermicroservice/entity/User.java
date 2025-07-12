@@ -29,7 +29,7 @@ public class User {
         this.password = password;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "roles_users",
             joinColumns = @JoinColumn(name = "user_id"),

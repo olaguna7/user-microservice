@@ -44,4 +44,8 @@ public class UserService {
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
     }
+
+    public List<UserDTO> findUsersByRoleId(Long roleId) {
+        return UserMapper.toDTOList(userRepository.findByRolesRoleId(roleId));
+    }
 }

@@ -22,4 +22,8 @@ public class RoleMapper {
         role.setName(roleDTO.getName());
         return role;
     }
+
+    public static List<Role> toEntityList(List<RoleDTO> rolesDTO) {
+        return rolesDTO.stream().map(RoleMapper::toEntity).toList();
+    }
 }

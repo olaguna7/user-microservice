@@ -80,4 +80,9 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+//    @PutMapping("/{userId}/roles")
+//    public ResponseEntity<UserDTO> addRolesToUser(@PathVariable("userId") Long userId) {
+//
+//    }
+
 }
