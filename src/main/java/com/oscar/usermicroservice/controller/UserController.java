@@ -50,7 +50,7 @@ public class UserController {
      * @param userDTO the essential data of the user
      * @return the DTO of the user created
      */
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<UserCreateDTO> createUser(@Valid @RequestBody UserCreateDTO userDTO) {
         UserCreateDTO user = userService.createUser(userDTO);
         return new ResponseEntity<>(user, HttpStatus.CREATED);

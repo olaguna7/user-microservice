@@ -8,6 +8,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -21,7 +22,8 @@ class UserServiceTest {
     @DisplayName("findById should return the UserDTO when user exists")
     void shouldReturnUserDTO_whenUserExists() {
         UserRepository mockRepository = mock(UserRepository.class);
-        UserService userService = new UserService(mockRepository);
+        PasswordEncoder mockEncoder = mock(PasswordEncoder.class);
+        UserService userService = new UserService(mockRepository, mockEncoder);
 
         User user = new User(1L, "User1", "user@user.com", "12345");
 
@@ -37,7 +39,8 @@ class UserServiceTest {
     @DisplayName("findById should throw an EntityNotFoundException when user does not exist")
     void shouldThrowUserNotFoundException_whenUserDoesNotExist() {
         UserRepository mockRepository = mock(UserRepository.class);
-        UserService userService = new UserService(mockRepository);
+        PasswordEncoder mockEncoder = mock(PasswordEncoder.class);
+        UserService userService = new UserService(mockRepository, mockEncoder);
 
         when(mockRepository.findById(1L)).thenReturn(Optional.empty());
 
@@ -50,7 +53,8 @@ class UserServiceTest {
     @Test
     void shouldCreateUser_whenDataIsValid() {
         UserRepository mockRepository = mock(UserRepository.class);
-        UserService userService = new UserService(mockRepository);
+        PasswordEncoder mockEncoder = mock(PasswordEncoder.class);
+        UserService userService = new UserService(mockRepository, mockEncoder);
 
         UserCreateDTO userToCreate = new UserCreateDTO("user2", "user2@user.com", "password2");
 
@@ -65,7 +69,8 @@ class UserServiceTest {
     @Test
     void shouldDeleteUser_whenUserExists() {
         UserRepository mockRepository = mock(UserRepository.class);
-        UserService userService = new UserService(mockRepository);
+        PasswordEncoder mockEncoder = mock(PasswordEncoder.class);
+        UserService userService = new UserService(mockRepository, mockEncoder);
 
         User user = new User(1L, "user1", "user1@user.com", "password1");
 
@@ -76,7 +81,8 @@ class UserServiceTest {
     @Test
     void shouldThrowEmptyResultDataAccessException_whenUserDoesNotExist() {
         UserRepository mockRepository = mock(UserRepository.class);
-        UserService userService = new UserService(mockRepository);
+        PasswordEncoder mockEncoder = mock(PasswordEncoder.class);
+        UserService userService = new UserService(mockRepository, mockEncoder);
 
         doThrow(new EmptyResultDataAccessException(1)).when(mockRepository).deleteById(1L);
 

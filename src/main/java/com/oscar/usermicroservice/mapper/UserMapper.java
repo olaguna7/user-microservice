@@ -20,11 +20,4 @@ public class UserMapper {
         return users.stream().map(UserMapper::toDTO).toList();
     }
 
-    public static User toEntity(UserDTO userDTO) {
-        User user = new User();
-        user.setUsername(userDTO.getUsername());
-        user.setEmail(userDTO.getEmail());
-        return user;
-    }
-
 }
