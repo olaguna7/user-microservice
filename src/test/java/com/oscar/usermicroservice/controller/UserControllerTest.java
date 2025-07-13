@@ -13,10 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
-
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -40,30 +37,28 @@ class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
-//    TODO: Modify the test for the RoleDTO list to work
-//    @Test
-//    void shouldReturnUser_whenGetById() throws Exception {
-//        UserDTO dto = new UserDTO("user", "mail@mail.com");
-//        when(userService.findById(1L)).thenReturn(dto);
-//
-//        mockMvc.perform(get("/users/1"))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.username").value("user"))
-//                .andExpect(jsonPath("$.email").value("mail@mail.com"));
-//    }
+    @Test
+    void shouldReturnUser_whenGetById() throws Exception {
+        UserDTO dto = new UserDTO("user", "mail@mail.com");
+        when(userService.findById(1L)).thenReturn(dto);
+
+        mockMvc.perform(get("/users/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.username").value("user"))
+                .andExpect(jsonPath("$.email").value("mail@mail.com"));
+    }
 
     @Test
     void shouldReturnNotFound_whenGetByIdNotFound() throws Exception {
         when(userService.findById(200L)).thenThrow(new EntityNotFoundException());
-        
+
         mockMvc.perform(get("/users/200"))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     void shouldReturnBadRequest_whenCreateUserWithInvalidEmail() throws Exception {
-        // TODO: Change the test to apply the roles functionality
-        UserCreateDTO dto = new UserCreateDTO("user", "user@user", "123", new ArrayList<>());
+        UserCreateDTO dto = new UserCreateDTO("user", "user@user", "123");
         when(userService.createUser(any(UserCreateDTO.class)))
                 .thenThrow(new DataIntegrityViolationException("Error in email format"));
 

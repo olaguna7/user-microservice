@@ -12,7 +12,6 @@ public class UserCreateMapper {
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
-        userDTO.setRoles(RoleMapper.toDTOList(user.getRoles()));
         return userDTO;
     }
 
@@ -21,7 +20,6 @@ public class UserCreateMapper {
         user.setUsername(userCreateDTO.getUsername());
         user.setEmail(userCreateDTO.getEmail());
         user.setPassword(userCreateDTO.getPassword());
-        user.setRoles(RoleMapper.toEntityList(userCreateDTO.getRoles()));
         return user;
     }
 

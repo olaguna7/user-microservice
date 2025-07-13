@@ -13,7 +13,6 @@ public class UserMapper {
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
-        userDTO.setRoles(RoleMapper.toDTOList(user.getRoles()));
         return userDTO;
     }
 
@@ -25,7 +24,6 @@ public class UserMapper {
         User user = new User();
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
-        user.setRoles(RoleMapper.toEntityList(userDTO.getRoles()));
         return user;
     }
 

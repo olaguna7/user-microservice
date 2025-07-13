@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,19 +19,4 @@ public class User {
     private String username;
     private String email;
     private String password;
-
-    public User(Long userId, String username, String email, String password) {
-        this.userId = userId;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "roles_users",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    List<Role> roles;
 }
